@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "id": "d45cabe6-98dd-4a5d-864e-829b8b89a736",
+        "title": "Pizza Dinner",
+        "amount": 450.5,
+        "category": "Food",
+        "date": "2026-07-31"
+    },
+    {
+        "id": "f0005cbd-7b2e-4595-89da-c01017ad11a6",
+        "title": "Metro Card Recharge",
+        "amount": 300.0,
+        "category": "Transport",
+        "date": "2026-07-30"
+    },
+    {
+        "id": "3ef1c2bf-20d4-4ad6-a7a7-a3429bb8b65e",
+        "title": "Movie Ticket",
+        "amount": 280.0,
+        "category": "Entertainment",
+        "date": "2026-07-28"
+    }
+]
