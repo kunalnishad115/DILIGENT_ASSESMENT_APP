@@ -8,4 +8,4 @@ class Expense:
     title: str
     amount: float
     category: str
-    date: str
+    date: date

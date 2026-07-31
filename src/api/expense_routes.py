@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Query
+
 from src.schemas.expense_schema import ExpenseCreate, ExpenseResponse
 from src.services.expense_service import ExpenseService
 
@@ -27,13 +28,7 @@ def get_total(category: str | None = Query(default=None)):
     return {"total": total}
 
 
-@router.delete("/{expense_id}")
+@router.delete("/{expense_id}", status_code=200)
 def delete_expense(expense_id: str):
-    deleted = service.delete_expense(expense_id)
-    if not deleted:
-        raise HTTPException(
-            status_code=404,
-            detail="Expense not found.",
-        )
-
+    service.delete_expense(expense_id)
     return {"message": "Expense deleted successfully."}

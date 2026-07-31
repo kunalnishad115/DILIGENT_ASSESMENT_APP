@@ -1,23 +1,26 @@
 import json
 from dataclasses import asdict
 from pathlib import Path
+
 from src.config.settings import DATA_DIR, EXPENSE_FILE
 from src.models.expense import Expense
 
 
 class JsonRepository:
-    def __init__(self):
+    def __init__(self, file_path: Path | None = None):
         DATA_DIR.mkdir(exist_ok=True)
-        if not EXPENSE_FILE.exists():
-            EXPENSE_FILE.write_text("[]")
+        self.file_path = file_path or EXPENSE_FILE
+
+        if not self.file_path.exists():
+            self.file_path.write_text("[]")
 
     def _read(self) -> list[Expense]:
-        with open(EXPENSE_FILE, "r", encoding="utf-8") as file:
+        with open(self.file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
         return [Expense(**item) for item in data]
 
     def _write(self, expenses: list[Expense]) -> None:
-        with open(EXPENSE_FILE, "w", encoding="utf-8") as file:
+        with open(self.file_path, "w", encoding="utf-8") as file:
             json.dump(
                 [asdict(expense) for expense in expenses],
                 file,
@@ -36,7 +39,7 @@ class JsonRepository:
 
     def delete(self, expense_id: str) -> bool:
         expenses = self._read()
-        updated = [e for e in expenses if e.id != expense_id]
+        updated = [expense for expense in expenses if expense.id != expense_id]
 
         if len(updated) == len(expenses):
             return False

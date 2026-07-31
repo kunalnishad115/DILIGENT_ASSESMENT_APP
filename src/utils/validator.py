@@ -1,4 +1,5 @@
 from fastapi import HTTPException
+
 from src.schemas.expense_schema import ExpenseCreate
 
 
@@ -8,12 +9,6 @@ class ExpenseValidator:
         title = expense.title.strip()
         category = expense.category.strip()
         if not title:
-            raise HTTPException(
-                status_code=400,
-                detail="Title cannot be empty."
-            )
+            raise HTTPException(status_code=400, detail="Title cannot be empty.")
         if not category:
-            raise HTTPException(
-                status_code=400,
-                detail="Category cannot be empty."
-            )
+            raise HTTPException(status_code=400, detail="Category cannot be empty.")

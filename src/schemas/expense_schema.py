@@ -1,4 +1,5 @@
 from datetime import date
+
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -7,6 +8,7 @@ class ExpenseCreate(BaseModel):
     amount: float = Field(..., gt=0)
     category: str = Field(..., min_length=1, max_length=50)
     date: date
+
 
 class ExpenseResponse(ExpenseCreate):
     id: str

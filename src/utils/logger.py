@@ -1,5 +1,4 @@
 import logging
-from pathlib import Path
 
 from src.config.settings import LOG_DIR
 
@@ -11,8 +10,6 @@ def get_logger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
     if logger.handlers:
         return logger
-
-
 
     logger.setLevel(logging.INFO)
 
