@@ -18,6 +18,3 @@ def home():
     return {"message": "ExpenseFlow API is running"}
 
 
-@app.get("/health")
-def health():
-    return {"status": "healthy"}
