@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+
+from src.api.expense_routes import router as expense_router
 from src.config.settings import APP_NAME, APP_VERSION
 
 app = FastAPI(
@@ -6,6 +8,9 @@ app = FastAPI(
     version=APP_VERSION,
     description="REST API for managing personal expenses.",
 )
+
+app.include_router(expense_router)
+
 
 @app.get("/")
 def home():
